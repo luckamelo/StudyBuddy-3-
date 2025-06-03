@@ -1,0 +1,16 @@
+// CadastroTarefa.js
+import { db } from './firebase';
+import { collection, addDoc } from 'firebase/firestore';
+
+const cadastrarTarefa = async (titulo, descricao) => {
+  try {
+    await addDoc(collection(db, "tarefas"), {
+      titulo,
+      descricao,
+      criadoEm: new Date()
+    });
+    alert('Tarefa cadastrada!');
+  } catch (e) {
+    console.error("Erro ao adicionar tarefa: ", e);
+  }
+};
